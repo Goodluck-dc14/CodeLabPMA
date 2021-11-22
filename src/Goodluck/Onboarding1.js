@@ -1,33 +1,36 @@
 import React from "react";
 import styled from "styled-components";
-// import img from "./1.png";
 
-const Onboarding1 = () => {
+const Onboarding1 = ({
+  headDis,
+  title,
+  text,
+  bt,
+  ButtonText,
+  image,
+  opacity1,
+  opacity2,
+  opacity3,
+}) => {
   return (
     <Container>
       <Wrapper>
-        <Holder>
-          <Left>
-            <BigText>Welcome</BigText>
-            <MediumText>
-              PMS is a management webApp for company and team collaborate
-            </MediumText>
-            <SmallerText>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-              magna aliquyam erat, sed diam. Lorem ipsum dolor sit amet,
-              consetetur
-            </SmallerText>
-            <ButtonHolder>
-              <Button1>Skip</Button1>
-              <Button>Continue</Button>
-            </ButtonHolder>
-          </Left>
-          <Img src="/image/undraw_Personal_email_re_4lx7__1_-removebg-preview.png" />
-        </Holder>
+        <Left>
+          <Head headDis={headDis}>Welcome</Head>
+          <Title>{title}</Title>
+          <Text>{text} </Text>
+          <Buttons>
+            <Button1 bt={bt}>Skip</Button1>
+            <Button2>{ButtonText}</Button2>
+          </Buttons>
+        </Left>
+        <Right src={image} />
       </Wrapper>
+      <Steps>
+        <Circle1 opacity1={opacity1} />
+        <Circle2 opacity2={opacity2} />
+        <Circle3 opacity3={opacity3} />
+      </Steps>
     </Container>
   );
 };
@@ -35,121 +38,168 @@ const Onboarding1 = () => {
 export default Onboarding1;
 
 const Container = styled.div`
-  background-color: #fafafa;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
 const Wrapper = styled.div`
-  width: 100%;
-  flex: 1;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  opacity: 1;
+  width: 80%;
+  min-height: 80%;
+  height: 100%;
   display: flex;
-  align-items: center;
-  border: 1px solid #e6e6e6;
-  justify-content: center;
-`;
-
-const Holder = styled.div`
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 60%;
-  @media screen and (max-width: 760px) {
-    display: flex;
-    align-items: center;
-    flex-direction: column-reverse;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  @media screen and (max-width: 1300px) {
+    justify-content: center;
+  }
+  @media screen and (max-width: 425px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: 20px;
   }
 `;
 
 const Left = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  margin-left: 20px;
-  width: 80%;
-  height: 60%;
-  @media screen and (max-width: 760px) {
+  height: 100%;
+  width: 500px;
+  @media screen and (max-width: 1300px) {
+    text-align: center;
+  }
+  @media screen and (max-width: 425px) {
     display: flex;
+    flex-direction: column;
     align-items: center;
   }
 `;
 
-const BigText = styled.div`
-  font-size: 50px;
-  font-weight: 800;
-  color: #091e42;
-  padding-bottom: 20px;
-  @media screen and (max-width: 760px) {
-    font-weight: 800;
-    font-size: 30px;
+const Right = styled.img`
+  height: 450px;
+  width: 500px;
+  @media screen and (max-width: 425px) {
+    height: unset;
+    width: 100%;
   }
 `;
 
-const MediumText = styled.div`
-  font-size: 20px;
-  font-weight: 600;
-  color: #091e42;
-  width: 330px;
-  @media screen and (max-width: 760px) {
-    width: 320px;
-    text-align: center;
+const Head = styled.div`
+  font-size: 55px;
+  font-weight: bold;
+  display: ${({ headDis }) => (headDis ? "block" : "none")};
+  @media screen and (max-width: 320px) {
+    font-size: 35px;
+    margin-top: 15px;
+  }
+`;
+
+const Title = styled.div`
+  margin-top: 25px;
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 500;
+  @media screen and (max-width: 320px) {
     font-size: 20px;
-    font-weight: 600;
+    margin-top: 15px;
   }
 `;
 
-const SmallerText = styled.div`
-  font-size: 12px;
-  width: 380px;
-  color: #091e42;
-  @media screen and (max-width: 760px) {
-    text-align: center;
-    width: 350px;
-  }
+const Text = styled.div`
+  margin-top: 25px;
+  font-weight: lighter;
 `;
 
-const ButtonHolder = styled.div`
+const Buttons = styled.div`
+  width: 100%;
+  height: 50px;
+  margin-top: 60px;
   display: flex;
-  align-items: center;
-  margin-top: 30px;
-  cursor: pointer;
-`;
-
-const Button = styled.div`
-  height: 40px;
-  width: 150px;
-  color: white;
-  background-color: #377dff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  margin-left: 50px;
-  @media screen and (max-width: 760px) {
-    width: 100px;
+  justify-content: space-between;
+  @media screen and (max-width: 425px) {
+    width: 100%;
+    margin-top: 20px;
   }
 `;
+
 const Button1 = styled.div`
-  height: 40px;
-  width: 150px;
+  height: 100%;
+  background: #1c253c;
   color: white;
-  background-color: #091e42;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 350ms;
+  display: ${({ bt }) => (!bt ? "flex" : "none")};
+
+  :hover {
+    opacity: 0.8;
+  }
+  @media screen and (max-width: 425px) {
+    height: 80%;
+    width: 120px;
+  }
+`;
+
+const Button2 = styled.div`
+  height: 100%;
+  background-color: #377dff;
+  color: white;
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  @media screen and (max-width: 760px) {
-    width: 100px;
+  cursor: pointer;
+  transition: 350ms;
+
+  :hover {
+    opacity: 0.8;
+  }
+  @media screen and (max-width: 425px) {
+    height: 80%;
+    width: 120px;
   }
 `;
 
-const Img = styled.img`
-  width: 50%;
-  @media screen and (max-width: 760px) {
-    width: 50%;
-  }
+const Steps = styled.div`
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 30px;
+`;
+
+const Circle1 = styled.div`
+  width: 15px;
+  height: 15px;
+  background-color: #377dff;
+  border-radius: 15px;
+  cursor: pointer;
+  opacity: ${({ opacity1 }) => (opacity1 ? "100%" : "30%")};
+`;
+
+const Circle2 = styled.div`
+  width: 15px;
+  height: 15px;
+  background-color: #377dff;
+  border-radius: 15px;
+  cursor: pointer;
+  opacity: ${({ opacity2 }) => (opacity2 ? "100%" : "30%")};
+`;
+
+const Circle3 = styled.div`
+  width: 15px;
+  height: 15px;
+  background-color: #377dff;
+  border-radius: 15px;
+  cursor: pointer;
+  opacity: ${({ opacity3 }) => (opacity3 ? "100%" : "30%")};
 `;
